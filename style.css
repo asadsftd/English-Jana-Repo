@@ -1,4 +1,4 @@
-#list-icon{
+#list-icon-three{
     display: none;
 }
 
@@ -33,6 +33,11 @@
         font-weight: 500;
     }
     #list-icon{
-    display:block;
+    /* display:block; */
+    display: flex;
+    align-items: center;
+}
+#list-icon-three{
+    display: block;
 }
 }
