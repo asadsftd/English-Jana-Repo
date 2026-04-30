@@ -12,9 +12,11 @@
 
 /* Responsive */
 @media screen and (max-width:576px){
+   
     #nav{
         display: flex;
        padding:  10px;
+
     }
     #nav-two{
         display: none;
@@ -56,6 +58,17 @@
 #img{
     display: none;
     width: 100%;
+}
+#pass, #input-text{
+    width: 60%;
+}
+#text-two{
+    font-size: 18px;
+   font-weight: normal;
+}
+#TEXT{
+    font-size: 25px;
+    font-weight: 400;
 }
 #pass, #input-text{
     width: 60%;
