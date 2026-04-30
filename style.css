@@ -1,14 +1,24 @@
-#list-icon-three{
+/* #list-icon-three{
     display: none;
 }
+#list-icon-two{
+    display: none;
+} */
 
-
+ #nav{
+        display: flex;
+       align-items: center;
+    }
 
 
 
 
 /* Responsive */
 @media screen and (max-width:576px){
+    #nav{
+        display: flex;
+       padding: 0px 10px;
+    }
     #nav-two{
         display: none;
         flex-direction: column;
@@ -25,11 +35,11 @@
         font-size: 14px;
     }
     #text{
-        font-size: 30px;
+        font-size: 25px;
             font-weight: 500;
     }
     #text-two{
-        font-size: 30px;
+        font-size: 25px;
         font-weight: 500;
     }
     #list-icon{
@@ -37,7 +47,7 @@
     display: flex;
     align-items: center;
 }
-#list-icon-three{
-    display: block;
+#list-icon-two{
+    display: none;
 }
 }
