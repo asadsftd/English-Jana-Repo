@@ -73,4 +73,18 @@
 #pass, #input-text{
     width: 60%;
 }
+#footer-container{
+    flex-direction: column;
+    
+}
+#footer-container-two{
+    margin-top: 10px;
+}
+#dynamic-buttons{
+    grid-template-columns: repeat(3,1fr);
+}
+#dynamic-videos-container{
+    grid-template-columns: repeat(1,1fr);
+    margin-top: 60px;
+}
 }
