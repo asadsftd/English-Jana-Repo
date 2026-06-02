@@ -36,9 +36,7 @@ document.getElementById("btn")
     }
     else{
         alert("Current Your Pin Number");
-    }
-
-    
+    }  
 })
 
 // log Out
@@ -51,63 +49,98 @@ document.getElementById("log-out")
     document.getElementById("banner-container").style.display="flex";
     document.getElementById("dynamic-videos").style.display="none";
 })
-
-// dynamic buttons in api with function
-function buttons(){
-    fetch("https://openapi.programming-hero.com/api/levels/all")
-    .then(res=>res.json())
-    .then(data=>{
-        dynamicButtons(data.data)
-    })
-}
-const dynamicButtons=(buttons)=>{
-    const dynamicContainer=document.getElementById("dynamic-buttons");
-    for(btn of buttons){
-        console.log(btn);
-        const div=document.createElement("div");
-        div.innerHTML=`
-        <button class="btn border-2 border-[#422AD5] text-2xl rounded-lg"><img src="assets/fa-book-open.png" alt="">Lesson-${btn.level_no}</button>
-        
-        
-        `;
-        dynamicContainer.appendChild(div);
-        
-
+// 
+    function loadButtons(){
+        fetch("https://openapi.programming-hero.com/api/levels/all")
+        .then(res=>res.json())
+        .then(data=>{
+            displayButtons(data.data);
+        })
     }
-}
-// dynamic videos 
-function videos(){
-    fetch("https://openapi.programming-hero.com/api/level/5")
-    .then(res=>res.json())
-    .then(data=>{
-        dynamicvideos(data.data)
-    })
-}
-const dynamicvideos =(videos)=>{
-    const dynamicVideosContainer= document.getElementById("dynamic-videos-container");
-    for(video of videos){
-        console.log(video);
-        const div = document.createElement("div");
-        div.innerHTML= `
-        <div class=" shadow-sm">
-  
-  <div class="card-body flex flex-col items-center justify-center">
-  <h2 class="card-title">${video.word}</h2>
-  <h2 class="card-title">Meaning /Pronounciation</h2>
-  <h2 class="card-title">${video.meaning}</h2>  
+
+    loadButtons();
+
+    const displayButtons=(data)=>{
+        console.log(data);
+        const dynamicButtonsContainer=document.getElementById("dynamic-buttons");
+        for(let btn of data){
+            console.log(btn);
+            const newElement=document.createElement("div");
+            newElement.innerHTML=`
+             <button onclick="loadCategoryWords(${btn.level_no})" class="btn text-xl hover:bg-[#422AD5] hover:text-white  rounded-md flex items-center"><img src="assets/fa-book-open.png" alt="">Lesson-${btn.level_no}</button>
+            
+            `;
+            dynamicButtonsContainer.appendChild(newElement);
+        }
+    }
+        // dunamic Words
+        function loadWord(){
+            fetch("https://openapi.programming-hero.com/api/level/5")
+            .then(res=>res.json())
+            .then(data=>{
+                displayWords(data.data);
+            })
+        }
+        
+        const displayWords=(data)=>{
+            console.log(data);
+            const dynamicWordsContainer = document.getElementById("dynamic-videos-container");
+            dynamicWordsContainer.innerHTML="";
+            if(data.length==0){
+                dynamicWordsContainer.innerHTML=`
+                <div class="" id="">
+                    <h1 class="col-span-full text-4xl font-bold text-center">Hellow</h1>
+                </div>
+                `;
+                return;
+            }
+            for(let word of data){
+                console.log(word);
+                const newElement = document.createElement("div");
+                newElement.innerHTML = `
+        <div class="card card-border bg-base-100 shadow-lg w-full h-[210px]">
+  <div class="card-body">
+    <h2 class="text-center text-3xl font-bold">${word.word}</h2>
+    <p class="text-2xl font-semibold text-center">Meaning / Pronounciation</p>
+    <p class="text-center text-2xl font-semibold">"${word.meaning}"</p>
+    <div class="flex items-center justify-between">
+    <i class="fa-solid fa-circle-info text-xl"></i>
+      <i class="fa-solid fa-volume-low text-xl"></i>
+    </div>
   </div>
-
 </div>
-        
-        
-        
-        `;
-        dynamicVideosContainer.appendChild(div);
-    }
-}
-buttons();
-videos();
+                
+                `;
+                dynamicWordsContainer.appendChild(newElement);
+            }
+        }
+        // 
+// buttons
+// LoadcategoryWords
+        function loadCategoryWords(level_no){
+            console.log(level_no);
+            const url =`https://openapi.programming-hero.com/api/level/${level_no}`;
+            console.log(url);
+            fetch(url)
+            .then(res=>res.json())
+            .then(data=>{
+                displayWords(data.data);
+            })
+        }
 
+// 
+// id
+// : 
+// 101
+// lessonName
+// : 
+// "Basic Vocabulary"
+// level_no
+// : 
+// 1
+
+
+// words
 
 
 // id
@@ -125,14 +158,3 @@ videos();
 // word
 // : 
 // "Diligent"
-
-
-// id
-// : 
-// 102
-// lessonName
-// : 
-// "Everyday Words"
-// level_no
-// : 
-// 2
