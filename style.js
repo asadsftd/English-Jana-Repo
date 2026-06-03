@@ -67,7 +67,7 @@ document.getElementById("log-out")
             console.log(btn);
             const newElement=document.createElement("div");
             newElement.innerHTML=`
-             <button id="btn-${btn.level_no}" onclick="loadCategoryWords(${btn.level_no})" class="btn text-xl hover:bg-[#422AD5] hover:text-white  rounded-md flex items-center"><img src="assets/fa-book-open.png" alt="">Lesson-${btn.level_no}</button>
+             <button id="btn-${btn.level_no}" onclick="loadCategoryWords(${btn.level_no})" class="btn text-xl hover:bg-[#422AD5] hover:text-white  rounded-md flex items-center">Lesson-${btn.level_no}</button>
             
             `;
             dynamicButtonsContainer.appendChild(newElement);
