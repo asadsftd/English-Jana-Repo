@@ -88,8 +88,10 @@ document.getElementById("log-out")
             dynamicWordsContainer.innerHTML="";
             if(data.length==0){
                 dynamicWordsContainer.innerHTML=`
-                <div class="" id="">
-                    <h1 class="col-span-full text-4xl font-bold text-center">Hellow</h1>
+                 <div class=" bg-slate-100 col-span-full py-3" id="">
+                    <img class="mx-auto" src="assets/alert-error.png" alt="">
+                    <p class="text-center">এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।</p>
+                    <p class="text-center font-bold text-3xl">নেক্সট Lesson এ যান</p>
                 </div>
                 `;
                 return;
