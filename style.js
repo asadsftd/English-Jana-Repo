@@ -27,7 +27,7 @@ document.getElementById("btn")
     console.log(convertedPass);
     const inputName=document.getElementById("input-text").value;
       if(convertedPass===123456){
-        document.getElementById("nav").style.display="block";
+    document.getElementById("nav").style.display="block";
     document.getElementById("nav").style.display="flex";
     // banner
     document.getElementById("banner-container").style.display="none";
@@ -67,7 +67,7 @@ document.getElementById("log-out")
             console.log(btn);
             const newElement=document.createElement("div");
             newElement.innerHTML=`
-             <button onclick="loadCategoryWords(${btn.level_no})" class="btn text-xl hover:bg-[#422AD5] hover:text-white  rounded-md flex items-center"><img src="assets/fa-book-open.png" alt="">Lesson-${btn.level_no}</button>
+             <button id="btn-${btn.level_no}" onclick="loadCategoryWords(${btn.level_no})" class="btn text-xl hover:bg-[#422AD5] hover:text-white  rounded-md flex items-center"><img src="assets/fa-book-open.png" alt="">Lesson-${btn.level_no}</button>
             
             `;
             dynamicButtonsContainer.appendChild(newElement);
@@ -125,7 +125,17 @@ document.getElementById("log-out")
             .then(res=>res.json())
             .then(data=>{
                 displayWords(data.data);
+                removeActive();
+                const activeButtons=document.getElementById(`btn-${level_no}`);
+                activeButtons.classList.add("active");
+                console.log(activeButtons);
             })
+        }
+        function removeActive(){
+            const activeColors=document.getElementsByClassName("active");
+            for(let color of activeColors){
+                color.classList.remove("active");
+            }
         }
 
 // 
