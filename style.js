@@ -106,7 +106,7 @@ document.getElementById("log-out")
     <p class="text-2xl font-semibold text-center">Meaning / Pronounciation</p>
     <p class="text-center text-2xl font-semibold">"${word.meaning}"</p>
     <div class="flex items-center justify-between">
-    <i class="fa-solid fa-circle-info text-xl"></i>
+    <i onclick="loadCategoryDetails(${word.id})" class="fa-solid fa-circle-info text-xl"></i>
       <i class="fa-solid fa-volume-low text-xl"></i>
     </div>
   </div>
@@ -139,6 +139,81 @@ document.getElementById("log-out")
                 color.classList.remove("active");
             }
         }
+            function loadCategoryDetails(id){
+                console.log(id);
+                const url=`https://openapi.programming-hero.com/api/word/${id}`;
+                console.log(id);
+                fetch(url)
+                .then(res=>res.json())
+                .then(data=>{
+                    displayCategoryWordDetails(data.data);
+                })
+            }
+            function displayCategoryWordDetails(data){
+                console.log(data);
+                document.getElementById("wordDetail").showModal();
+                const detailsContainer=document.getElementById("detailsContainer");
+                detailsContainer.innerHTML=`
+                <div class="card card-border bg-base-100 ">
+  <div class="card-body">
+    <h2 class="text-3xl font-bold">${data.word} ( ${data.pronunciation} )</h2>
+    <p class="text-2xl font-semibold">Meaning</p>
+    <p class="text-2xl font-semibold">${data.meaning}</p>
+    <p class="text-2xl font-semibold">Example</p>
+    <p class="text-2xl font-semibold">${data.sentence}</p>
+    <p class="text-2xl font-semibold">সমার্থক শব্দ গুলো</p>
+    <div>
+    <button class="btn btn-md text-2xl font-medium">${data.synonyms[0]}</button>
+    <button class="btn btn-md text-2xl font-medium">${data.synonyms[1]}</button>
+    <button class="btn btn-md text-2xl font-medium">${data.synonyms[2]}</button>
+    
+    </div>
+    
+  </div>
+</div>
+                `;
+            }
+
+
+            // 
+
+// id
+// : 
+// 5
+// level
+// : 
+// 1
+// meaning
+// : 
+// "আগ্রহী"
+// partsOfSpeech
+// : 
+// "adjective"
+// points
+// : 
+// 1
+// pronunciation
+// : 
+// "ইগার"
+// sentence
+// : 
+// "The kids were eager to open their gifts."
+// synonyms
+// : 
+// Array(3)
+// 0
+// : 
+// "enthusiastic"
+// 1
+// : 
+// "excited"
+// 2
+// : 
+// "keen"
+// length
+// : 
+// 3
+            // 
 
 // 
 // id
